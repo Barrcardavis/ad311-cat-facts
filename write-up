@@ -1,0 +1,84 @@
+AD311 – Third‑Party API Integration Write‑Up
+API Chosen
+For this project, I selected the Cat Facts API (https://catfact.ninja/fact). I chose this API because it is simple, requires no authentication, and returns lightweight JSON data that is easy to integrate into a small web application. It also allowed me to focus on the core assignment goals: making a fetch request, handling responses, updating the UI, and demonstrating error handling.
+
+Application Overview
+My application is a Random Cat Fact Generator. When the user clicks a button, the app sends a request to the Cat Facts API and displays a new fact on the page. The interface includes:
+
+A button to fetch a new fact
+
+A display area for the fact
+
+A loading state
+
+Error handling for offline mode, blocked requests, and failed fetches
+
+The goal was to create a simple, clean UI that clearly shows the result of each API call.
+
+How the Application Works
+The user clicks Get Cat Fact.
+
+The app shows a temporary “Loading…” message.
+
+A fetch() request is sent to the API endpoint.
+
+If successful, the JSON response is parsed and displayed on the page.
+
+If the request fails (network error, timeout, blocked request), the app displays an error message and logs the error in the console.
+
+The app uses only HTML, CSS, and JavaScript, and runs entirely in the browser.
+
+Normal Test Cases
+These demonstrate expected behavior when everything is working:
+
+Clicking the button returns a cat fact
+
+The UI updates with a new fact.
+
+Console logs the JSON response.
+
+Multiple clicks return different facts
+
+Each request fetches a new fact from the API.
+
+Page loads and fetch works with no errors
+
+The app behaves normally with a stable internet connection.
+
+Edge Test Cases
+These demonstrate how the app handles failures, as required by the assignment:
+
+Internet disconnected
+
+DevTools shows: net::ERR_INTERNET_DISCONNECTED
+
+UI displays an error message.
+
+Console logs the caught error.
+
+API request blocked in DevTools
+
+Using Network → Block Request URL
+
+The fetch fails and triggers the error handler.
+
+Simulated timeout using Network Throttling (Slow 3G)
+
+The request takes too long and eventually fails.
+
+The app shows the error message and logs the failure.
+
+These tests confirm that the application handles unexpected conditions gracefully.
+
+Challenges Encountered
+Understanding fetch error behavior:  
+The API doesn’t always return an HTTP error—sometimes the browser throws a generic TypeError: Failed to fetch. I had to test different failure scenarios to understand how to catch and display these errors properly.
+
+Simulating edge cases:  
+I used DevTools features like Offline mode, Request Blocking, and Network Throttling to create realistic failure conditions.
+
+Ensuring clean UI updates:  
+I added loading states and clear error messages so the user always knows what’s happening.
+
+Conclusion
+This project helped me practice integrating a third‑party API, handling asynchronous requests, and designing UI behavior around both successful and failed responses. The application meets the assignment requirements by demonstrating API usage, proper error handling, documentation, and a video walkthrough showing normal and edge test cases.
